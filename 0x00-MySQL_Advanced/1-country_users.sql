@@ -6,6 +6,6 @@ CREATE TABLE  `users` (
        `id` int NOT NULL  AUTO_INCREMENT,
        `email` varchar(255) NOT NULL UNIQUE,
        `name` varchar(255) NOT NULL,
-       `country` ENUM ('US', 'CO', 'TN') DEFAULT 'US'
+       `country` ENUM ('US', 'CO', 'TN') DEFAULT 'US',
 	   PRIMARY KEY (`id`)
 );
