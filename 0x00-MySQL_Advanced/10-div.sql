@@ -3,9 +3,8 @@
 -- if the second number is equal to 0.
 
 DELIMITER $$
-CREATE FUNCTION SafeDiv (
-  in a INT, 
-  in b INT)
+
+CREATE FUNCTION SafeDiv (a INT, b INT)
 RETURNS FLOAT
 BEGIN
 	DECLARE division FLOAT;
