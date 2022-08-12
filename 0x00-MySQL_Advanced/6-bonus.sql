@@ -2,12 +2,11 @@
 -- that adds a new correction for a student.
 DELIMITER $$
 
-CREATE PROCEDURE `AddBonus`(
+CREATE PROCEDURE AddBonus(
   IN user_id INT, 
   IN project_name VARCHAR(255), 
   IN score FLOAT)
 BEGIN
-	-- SELECT IFNULL(id, 'ZERO') as id FROM projects where name=project_name LIMIT 1;
 	SELECT EXISTS(SELECT id from projects WHERE name=project_name) INTO @RESULT; 	
 	
 	IF @RESULT = 0 THEN
@@ -22,5 +21,5 @@ BEGIN
    		user_id,
    		(SELECT id FROM projects where name=project_name LIMIT 1),
    		score);
-END
+END; $
 DELIMITER ;
