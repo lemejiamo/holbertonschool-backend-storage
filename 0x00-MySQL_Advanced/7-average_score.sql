@@ -2,7 +2,8 @@
 -- that computes and store the average score for a student. 
 -- Note: An average score can be a decimal 
 
-DELIMITER $
+DELIMITER $$
+
 CREATE PROCEDURE ComputeAverageScoreForUser(
 	IN user_id INT)
 BEGIN
