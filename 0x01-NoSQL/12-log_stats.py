@@ -6,7 +6,6 @@
 if __name__ == "__main__":
 
     from pymongo import MongoClient
-
     client = MongoClient('mongodb://127.0.0.1:27017')
     log_collection = client.logs.nginx
     print("{} logs".format(log_collection.count_documents({})))
@@ -16,7 +15,7 @@ if __name__ == "__main__":
                'PUT': 0,
                'PATCH': 0,
                'DELETE': 0}
-    status: int = 0
+    status = 0
 
     for log in logs:
         if log.get('method') == 'GET':
