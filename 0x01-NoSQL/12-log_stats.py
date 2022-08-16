@@ -15,7 +15,7 @@ if __name__ == "__main__":
                'PUT': 0,
                'PATCH': 0,
                'DELETE': 0}
-    status = 0
+    status: int = 0
 
     for log in logs:
         if log.get('method') == 'GET':
@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     print('Methods:')
     print('\tmethod GET: {}'.format(METHODS['GET']))
-    print('\tmethod !POST: {}'.format(METHODS['POST']))
+    print('\tmethod POST: {}'.format(METHODS['POST']))
     print('\tmethod PUT: {}'.format(METHODS['PUT']))
     print('\tmethod PATCH: {}'.format(METHODS['PATCH']))
     print('\tmethod DELETE: {}'.format(METHODS['DELETE']))
