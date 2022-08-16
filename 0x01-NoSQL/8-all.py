@@ -7,9 +7,13 @@ def list_all(mongo_collection):
     return an empty list if no documento in the collection
     """
     documents = mongo_collection.find()
-    quantity: int = 0
+    quantity = 0
+    documents_list = []
+    # int (type(documents))
     for document in documents:
+        # int(document)
+        documents_list.append(document)
         quantity = quantity + 1
     if quantity == 0:
         return []
-    return documents
+    return documents_list
