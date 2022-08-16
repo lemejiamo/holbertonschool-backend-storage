@@ -8,7 +8,7 @@ def insert_school(mongo_collection, **kwargs):
     """
     Returns the new _id
     """
-    if kwargs is not None:
+    if kwargs:
         id = mongo_collection.insert_one(kwargs)
         return id
     return None
