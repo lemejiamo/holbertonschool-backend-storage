@@ -16,6 +16,7 @@ class Cache():
     Main clas
     """
     def __init__(self):
+        """ CONSTRUCTOR"""
         self._redis = Redis()
         self._redis.flushdb()
 
