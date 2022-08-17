@@ -16,8 +16,8 @@ class Cache():
     Main clas
     """
     def __init__(self):
-        _redis = Redis()
-        _redis.flushdb()
+        self._redis = Redis()
+        self._redis.flushdb()
 
     def store(self, data: Union['str', 'bytes', 'int', 'float']) -> str:
         """
