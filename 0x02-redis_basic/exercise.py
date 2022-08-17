@@ -8,7 +8,7 @@ flush the instance using flushdb.
 
 import redis
 from typing import Union
-import uuid
+from uuid import uuid4
 
 
 class Cache():
@@ -27,6 +27,6 @@ class Cache():
 
         Returns: A key in string format
         """
-        _randomkey = uuid.uuid4().__str__()
+        _randomkey = uuid4().__str__()
         self._redis.set(_randomkey, data)
         return _randomkey
