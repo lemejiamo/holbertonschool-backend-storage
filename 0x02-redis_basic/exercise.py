@@ -6,18 +6,18 @@ flush the instance using flushdb.
 
 """
 
-from redis import Redis
+import redis
 from typing import Union
 import uuid
 
 
 class Cache():
     """
-    Main clas
+    Main class for cache
     """
     def __init__(self):
         """ CONSTRUCTOR"""
-        self._redis = Redis()
+        self._redis = redis.Redis()
         self._redis.flushdb()
 
     def store(self, data: Union['str', 'bytes', 'int', 'float']) -> str:
