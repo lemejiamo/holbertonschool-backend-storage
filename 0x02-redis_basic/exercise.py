@@ -51,6 +51,7 @@ def replay(methodName: Callable) -> None:
     """
     Display the history of calls of a function
     """
+
     _redis = redis.Redis()
     try:
         calls = _redis.get(methodName.__qualname__).decode('utf-8')
@@ -64,8 +65,8 @@ def replay(methodName: Callable) -> None:
 
     for input, output in zip(inputs, outputs):
         print('{}(*{}) -> {}'.format(methodName.__qualname__,
-                                     input.decode("utf-8"),
-                                     output.decode("utf-8")))
+                                     input.decode('utf-8'),
+                                     output.decode('utf-8')))
 
 
 class Cache():
@@ -92,12 +93,14 @@ class Cache():
 
     def get(self, key: str,
             fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
+        """  Get the values as specific func"""
         data = self._redis.get(key)
         if fn:
             return fn(data)
         return data
 
     def get_int(self, data: int) -> int:
+        """  Get the values as int" """
         try:
             int(data)
             return data
@@ -105,4 +108,5 @@ class Cache():
             return 0
 
     def get_str(self, data: str) -> str:
+        """  Get the values as str"""
         return self._redis.get(data).decode('utf_8')
