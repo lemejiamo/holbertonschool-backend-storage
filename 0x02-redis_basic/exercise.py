@@ -41,12 +41,31 @@ def call_history(method: Callable) -> Callable:
         """wrapper function"""
 
         self._redis.rpush(inputs, str(args))
-        print(inputs)
-
         output = method(self, *args, **kwds)
         self._redis.rpush(outputs, output)
         return output
     return wrapper
+
+
+def replay(methodName: Callable) -> None:
+    """
+    Display the history of calls of a function
+    """
+    _redis = redis.Redis()
+    try:
+        calls = _redis.get(methodName.__qualname__).decode('utf-8')
+    except Exception:
+        calls = 0
+
+    print(f'{methodName.__qualname__} was called {calls} times:')
+
+    inputs = _redis.lrange(methodName.__qualname__ + ':inputs', 0, -1)
+    outputs = _redis.lrange(methodName.__qualname__ + ':outputs', 0, -1)
+
+    for input, output in zip(inputs, outputs):
+        print('{}(*{}) -> {}'.format(methodName.__qualname__,
+                                     input.decode("utf-8"),
+                                     output.decode("utf-8")))
 
 
 class Cache():
